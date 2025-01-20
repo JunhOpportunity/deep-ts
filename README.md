@@ -266,3 +266,80 @@ enum Language {
 	english = "en",
 }
 ```
+## Any와 Unknown
+
+### any
+
+> 특정 변수의 타입을 우리가 확실히 모를 때
+> 
+
+<aside>
+💡
+
+any 타입은 타입스크리트의 이점을 전혀 사용하지 않겠다는 것과 마찬가지이기 때문에 되도록 사용하지 않는 것이 좋다.
+
+(나중에 런타임시 오류가 발생해서 굉장히 좋지 않음)
+
+</aside>
+
+```jsx
+// any
+
+let anyVar: any = 10;
+
+anyVar = true;
+anyVar = {}
+```
+
+### unknown
+
+> any 타입과 비슷하지만 타입 정제를 거치지 않으면 사용할 수 없는 값이 되어버리기 때문에 런타임 에러를 일으키는 any 타입 보다는 안전하다.
+> 
+
+```jsx
+let unknownVar: unknown;
+
+unknownVar = "";
+unknownVar = 1;
+unknownVar = () => {}
+
+// 타입 정제 (이 과정을 거쳐야만 값을 활용할 수 있다.)
+if (typeof unknownVar === "number") {
+	num = unknownVr;
+}
+```
+
+## void와 never
+
+### void
+
+> 아무것도 없음을 의미하는 타입. undefined 외에 다른 값은 절대 담을 수 없다.
+> 
+
+```jsx
+function func2(): void {
+  console.log('func2');
+}
+```
+
+### never
+
+> 반환값 자체가 존재하는 것이 불가능 할 경우 never 사용
+> 
+
+<aside>
+💡
+
+undefined 도 담을 수 없다.
+
+</aside>
+
+```jsx
+function func3(): never {
+  while(true) {}
+}
+
+function func4(): never {
+  throw new Error();
+}
+```
