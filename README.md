@@ -136,3 +136,133 @@ let users: [string, number][] = [
   [3, "박준호"], // 에러 발생
 ];
 ```
+## 객체
+
+```jsx
+// object
+let user: {
+  id: number;
+  name: string;
+} = {
+  id: 1,
+  name: "Kim",
+}
+```
+
+### 옵셔널 프로퍼티
+
+<aside>
+💡
+
+없을 수도 있는 데이터인 경우에 사용. 물음표를 붙인다.
+
+</aside>
+
+<aside>
+💡
+
+값을 바꾸지 못하게 하고 싶다면 앞에 readonly 를 붙인다
+
+</aside>
+
+```jsx
+let user: {
+  id?: number;
+  readonly name: string;
+} = {
+  id: 1,
+  name: "Kim",
+}
+```
+
+## 타입 별칭
+
+> 자주 사용되는 타입을 변수로 저장해서 사용하는 것
+> 
+
+```jsx
+// 타입 별칭 = 타입 변수
+type User = {
+  id: number;
+  name: string;
+  location: string;
+}
+
+let user: User = {
+  id: 1,
+  name: "Kim",
+  location: "Korea",
+}
+```
+
+## 인덱스 시그니처
+
+> 너무 많은 타입 이름을 선언해야 하는 경우 형식만 정의해주는 것
+> 
+
+<aside>
+💡
+
+만약, 특정 타입은 무조건 들어가야 한다면 평소처럼 그대로 타입을 선언해주면 된다.
+
+여기서 주의할 점은, 특정 타입과 인덱스 시그니처의 타입이 일치해야 한다.
+
+</aside>
+
+```jsx
+// 인덱스 시그니처
+type CountryNumberCodes = {
+  [key: string]: number;
+  Korea: number; // Korea는 무조건 있어야 한다. 위 number과 동일타입.
+}
+
+let countryNumberCodes : CountryNumberCodes = {
+  Korea: 82,
+  USA: 1,
+  China: 86,
+}
+```
+
+## Enum
+
+> 여러가지 값들에 각각 이름을 부여해 열거해두고 사용하는 타입
+> 
+
+<aside>
+💡
+
+enum 타입은 컴파일을 해도 사라지지 않는다. 즉, 값으로 그대로 남는다
+
+</aside>
+
+```jsx
+// 기존 사용
+const user1 = {
+    name: 'Taro',
+    role : 0
+}
+const user2 = {
+    name: 'Hanako',
+    role : 1
+}
+
+// 숫자형 enum 선언 후 사용
+enum Role {
+    ADMIN = 0,
+    USER = 1
+}
+const user3 = {
+    name: 'Jiro',
+    role : Role.ADMIN
+}
+const user4 = {
+    name: 'Saburo',
+    role : Role.USER
+}
+
+// 문자열형 enum
+enum Language {
+	korean = "ko",
+	english = "en",
+}
+```
