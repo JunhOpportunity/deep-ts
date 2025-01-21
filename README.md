@@ -330,7 +330,7 @@ function func2(): void {
 <aside>
 💡
 
-undefined 도 담을 수 없다.
+undefined 도 담을 수 없다. (void와 다른 점)
 
 </aside>
 
