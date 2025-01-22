@@ -343,3 +343,89 @@ function func4(): never {
   throw new Error();
 }
 ```
+# Section4 - 타입스크립트 이해하기
+
+## 업 캐스팅과 다운 캐스팅
+
+### 업 캐스팅
+
+> 수퍼 타입과 서브 타입 중에서 서브 타입 → 수퍼 타입으로 타입 변환 되는 것
+> 
+
+### 다운 캐스팅
+
+> 서브 타입 → 수퍼 타입으로 타입 변환 되는 것
+> 
+
+## 대수 타입
+
+> 여러개의 타입을 합성해서 새롭게 만들어낸 타입
+합집합 타입과 교집합 타입이 존재한다.
+> 
+
+### 합집합 타입 (Union)
+
+```jsx
+// 일반 변수
+let a: string | number | boolean;
+a = 1;
+a = "hello"
+a = true;
+
+// 배열
+let arr: (string | number | boolean) [] = [1, "hello", true];
+
+// 타입 별칭의 합집합
+type Dog = {
+	name : string;
+	color : string;
+}
+
+type Person = {
+	name : string;
+	language : string;
+}
+
+type union = Dog & Person;
+
+// 가능
+let union1 : Union = {
+	name: "a",
+	color: "red"
+}
+
+let union1 : Union = {
+	name: "b",
+	language: "blue"
+}
+let union1 : Union = {
+	name: "c"
+	color: "green"
+	language: "kr"
+}
+
+// 불가능!!!
+let union1 : Union = {
+	name: "d"
+}
+```
+
+### 교집합 타입
+
+```jsx
+type Dog = {
+	name : string;
+	color : string;
+}
+
+type Person = {
+	name : string;
+	language : string;
+}
+
+type Intersection = Dog & Person;
+
+let intersection : Intersection = {
+	name: "name"
+}
+```
