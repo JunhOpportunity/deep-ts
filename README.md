@@ -429,5 +429,70 @@ let intersection : Intersection = {
 	name: "name"
 }
 ```
+## 타입 추론
 
-# Section5
+> 타입을 적지 않아도 타입스크립트가 알아서 타입을 추론하는 것
+> 
+
+초기화 할 때 첫 타입을 기준으로 타입을 추론한다.
+
+초기화 할 때 아무 것도 넣지 않으면 any로 적용되고,
+
+### 암묵적 any 타입의 진화
+
+만약 변수에 값을 넣지 않아서 타입 추론이 불가능 할 경우 any 타입이 된다.
+
+이후에 값을 넣으면 계속해서 타입이 변하는데, 이를 암묵적 any 타입 진화라고 한다.
+
+명시적으로 any를 지정해주는 것과는 다르다. (이 경우에는 항상 any 타입이다)
+
+```jsx
+let a; // any 타입
+
+a = 10; // number 타입
+
+a = "hello" // string 타입
+```
+
+### const로 선언한 경우
+
+const로 변수를 선언해서 타입 추론을 할 경우 해당 값이 바뀔 일이 없기 때문에 리터럴 타입 즉, 자기 자신과 같은 타입으로 타입이 추론된다.
+
+```jsx
+const a = 10; // const a : 10
+```
+
+## ⭐타입 단언
+
+### const 단언
+
+객체 데이터를 한 번에 readonly로 만드는 효과가 있다.
+
+```jsx
+let cat = {
+	name: "야옹이",
+	color: "black"
+} as const;
+```
+
+## 타입 좁히기
+
+> 조건문 등을 이용해 넓은 타입에서 좁은 타입으로 상황에 따라 타입을 좁히는 것
+> 
+
+```jsx
+function func(value: number | string) {
+	if(typeof value === "number") {
+		console.log(value.toFixed());
+	} else if (typeof value == "string") {
+		console.log(value.toUpperCase());
+	}
+}
+```
+
+## 서로소 유니온 타입
+
+> 교집합이 없는 타입들로만 만든 유니온 타입
+
+
+
