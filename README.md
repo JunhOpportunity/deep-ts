@@ -494,5 +494,45 @@ function func(value: number | string) {
 
 > 교집합이 없는 타입들로만 만든 유니온 타입
 
+## Section 5 - 함수와 타입
 
+### 함수 타입
+
+```tsx
+// 화살표 함수 타입 정의 (반환타입은 알아서 추론한다)
+const add = (a: number, b: number) => a + b; 
+
+// 튜플 타입 매개변수
+function getSum(...rest: number[]) {
+	//...
+}
+
+getSum(1, 2, 3);
+getSum(1, 2, 3, 4, 5);
+```
+
+### 함수 타입 표현식
+
+> 비슷한 기능을 하는 함수를 만들 때 함수 타입 표현식을 선언해두면 타입을 계속 정의하지 않고 재사용 할 수 있다.
+> 
+
+```tsx
+// 함수 타입 표현식
+type Add = (a: number, b: number) => number;
+
+// 사용
+const add: Add = (a, b) = > a + b;
+```
+
+### 호출 시그니처
+
+```tsx
+// 호출 시그니처
+type Add = {
+	(a: number, b: number) => number;
+};
+
+// 사용
+const add: Add = (a, b) = > a + b;
+```
 
