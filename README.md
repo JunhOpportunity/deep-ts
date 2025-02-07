@@ -536,3 +536,40 @@ type Add = {
 const add: Add = (a, b) = > a + b;
 ```
 
+### 함수 오버로드
+
+> 하나의 함수를 매개변수의 개수나 타입에 따라 여러 가지 버전으로 만드는 문법
+> 
+
+```tsx
+// 오버로드 시그니처
+function add(a: number, b: number): void;
+function add(a: number, b: number, c: string): void;
+
+// 구현
+function add(a: number, b: number, c?: string): void {
+  console.log(a + b);
+  if (c) {
+    console.log(c);
+  }
+}
+```
+
+### 사용자 정의 타입가드
+
+> 해당 타입이 맞는지 확인하는 함수
+> 
+
+```tsx
+  function isDog(animal: Animal): animal is Dog {
+	  return (animal as Dog).isBark !== undefined;
+	}
+	
+	function wanring(animal: Animal) {
+		if(isDog(animal)) {
+			// 강아지
+		} else {
+			// 고양이
+		}
+	}
+```
