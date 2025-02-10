@@ -573,3 +573,70 @@ function add(a: number, b: number, c?: string): void {
 		}
 	}
 ```
+
+# Section6 - 인터페이스
+
+- 타입 별칭과는 다르게 여러 타입을 합치거나 유니온으로 만들 수 없다.
+
+```tsx
+interface Person{
+  readonly name: string;
+  age?: number;
+  sayHi(): void; // 호출 시그니처 방
+}
+
+const person: Person = {
+  name: "person",
+  sayHi: function() {
+    console.log("안녕하세요");
+  }
+}
+```
+
+### 인터페이스 확장(=상속)
+
+- 원본 프로퍼티 타입의 서브 타입으로만 새로 재정의 할 수 있다. 아예 다른걸로는 못함.
+
+```tsx
+interface Animal{
+	name: string;
+	color: string;
+}
+
+interface Dog extends Animal {
+	isBark: boolean;
+}
+
+interface Cat extends Animal {
+	name: "ED"; 
+}
+```
+
+### 인터페이스 다중확장
+
+```tsx
+interface DogCat extends Dog, Cat {}
+```
+
+### 인터페이스 합치기
+
+> 동일한 인터페이스 이름으로 만든 타입은 서로 합쳐진다.
+> 
+
+```tsx
+interface Person {
+	name: string;
+}
+
+interface Person {
+	age: string;
+}
+
+// 결과
+interface Person {
+	name: string;
+	age: string;
+}
+```
+
+
